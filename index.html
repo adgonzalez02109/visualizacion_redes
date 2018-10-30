@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<!--
+	Spatial by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+	<title>Generic - Spatial by TEMPLATED</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+</head>
+<body>
+
+	<!-- Header -->
+	<header id="header">
+		<h1>VISUALIZACION FORCE NETWORK</h1>
+
+	</header>
+
+	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+	<!-- Main -->
+	<section id="main" class="wrapper">
+		<div class="container">
+
+			<header class="major special">
+				<h2>¿DE QUE MUNICIPIOS PROVIENEN LOS DEPORTISTAS DE CARTAGO?</h2>
+				<h1>Esta visualización proviene del dataset de <a href="https://www.datos.gov.co/Deporte-y-Recreaci-n/Medallas-por-deportista-Juegos-Departamentales-Car/dg2n-xs4n" target=_blanck>Medallas por deportista Juegos Departamentales Cartago </a> de datos.gov.co y tiene la información de deportes, categorias (femenino, masculino y mixto) y ciudad con la medalla que se ganaron. 
+					<br><br>Abajo veras puntos azules que corresponden a los municipios que compitieron en los juegos y puntos rosas, verdes y azules que corresponden al deporte en el que se ganó una medalla y el genero del deportista que ganó esa medalla. <br>Las lineas que unen los puntos estan de color azul, rojo y amarillo que corresponden a que medalla se ganó (plata, bronces, oro respectivamente).<br><br>
+					Si das click en los recuadros de la izquierda podras filtrar los datos, por medalla o por genero, y si das clic sobre los puntos podras ver las conexiones de los mismos.
+				</h1>
+			</header>
+			<div class="row">
+				<div id="legend" class="6u 12u$(xsmall)">
+
+				</div>
+				<div class="6u$ 12u$(xsmall)">
+					<svg id="net_canvas" width="1100" height="900"></svg>
+					<script src="net.js"></script>
+				</div>
+			</div>
+			<div class="row">
+				<div  class="4u">
+					<h1>WHAT</h1>
+					Se utilizó una tabla de item de la cual se usaron los siguientes campos:<br><br>
+municipio (categorico): Almacena los nombres de los municipios de donde provienen las personas que ganaron una medalla.<br>
+medalla (categorico): Se puede plantear como ordenado (bronce,plata,oro) pero para este caso no nos interesa este ordenamiento.<br>
+deporte (categorico): Muestra el nombre del deporte en el que se ganó la medalla.<br>
+genero (categorico): Almacena si la competencia fue femenina, masculina o mixta.<br><br>
+
+Acorde a estos datos se realizó el filtering generando dos tablas, nodos y enlaces de las cuales se usaron los siguientes campos:<br><br>
+NODOS.<br>
+id (cuantitativo secuencial): Almacena un id unico para cada nodo.<br>
+name (categorico): Almacena en el caso de los deportes la combinación de deporte y genero (deporte_genero) y en el caso de los municipios almacena el nombre del municipio.<br>
+value (categorico): Almacena el deporte o el municipio.<br>
+type (categorico): Almacena el genero y en el caso de los municipios almacena el tipo "municipio"<br><br>
+ENLACES.<br>
+source y target (cuantitativos secuenciales): hacen referencia a los id de los nodos.<br>
+value (categorico): Almacena la medalla que se ganó en esa competencia especifica.
+				</div>
+				<div  class="4u">
+<h1>WHY</h1>
+Discover outliers: Permite descubrir outliers por la aglomeración de links o por la identificación de nodos solos.<br>
+Explore outliers: Permite buscar sin saber donde ni que la interacción entre generos, deportes y ciudades.<br>
+Identify topology: Permite identificar una topologia que evidencie algun comportamiento o tendencia y dando click sobre un link especifico permite ver la topologia del mismo.<br>
+Identify features: Permite filtrar categorias para poder identificar por ejemplo los resultados de los deportes mixtos.
+<br>
+
+
+
+				</div>
+				<div  class="4u">
+<h1>HOW</h1>
+<p><b>Marca - punto:</b></p>
+<b>Posición espacial (Separate and align):</b>Los puntos que <b>no</b> corresponden a municipios se ubican en el svg separados unos de otros. Los puntos que <b>si</b> corresponden a municipios estan alineados y separados el uno al lado del otro sobre un eje X.<br>
+
+<b>Color hue (Separate and express): </b>Los puntos de color azul son municipios y los colores rosa, verde y gris son de los generos, lo cual expresa el tipo de datos que es y los separa.
+<br>
+
+Manipulate: Select and change de los puntos que no corresponden a municipios debido a que permite seleccionar un punto y hacerle popout por medio del color opacity o cambiarlo de posición con el fin de visualizar mejor algun dato.<br>
+Facet: Superimpose de los puntos correspondientes a los diferentes generos de competencia y a los puntos de municipios.<br>
+Reduce: Filter and embed de los puntos, dado que si se da click en la leyenda desvance todos los puntos menos los correspondientes a esa categoria, y si se pasa el mouse sobre un punto muestra su nombre.
+<br>
+<br>
+
+<p><b>Marca - linea:</b></p>
+<b>Posición espacial (Express and align):</b>Por medio de la posición de una linea uniendo dos puntos expresa una relación entre features, y es alineada por las fuerzas que se le aplican.<br>
+
+<b>Color hue (Separate): </b>Los colores de las lineas corresponden a las medallas que se recibieron por cada competencia.<br>
+<br>
+Manipulate: Select dado que gracias a la interacción con los puntos tambien se realiza un popout de las lineas por el color opacity.<br>
+Facet: Superimpose de lineas.
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+
+</body>
+</html>
