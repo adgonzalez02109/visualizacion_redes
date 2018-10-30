@@ -10,7 +10,7 @@ SI DAS CLICK EN LOS RECUADROS DE LA IZQUIERDA PODRAS FILTRAR LOS DATOS, POR MEDA
 Las tecnologias usadas fueron d3v5 y javascript, junto con css por lo cual solo se necesita un explorador y conexión a internet para ejecutarlo.
 
 Autor:Alvaro Diego Gonzalez Vesga
-
+URL datos: https://www.datos.gov.co/Deporte-y-Recreaci-n/Medallas-por-deportista-Juegos-Departamentales-Car/dg2n-xs4n
 URL visualizacion: https://adgonzalez02109.github.io/visualizacion_redes/
 
 Este proyecto se publica bajo la licencia de MIT.
